@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Les't Play A Guessing Games</title>
+	<link href="style.css" rel="stylesheet">
+	<link href="pushy-buttons.min.css" rel="stylesheet">
+	
+	<script>
+		var click = 0;
+		var hclick = 0;
+		var x = Math.floor(Math.random() * 51);	
+	//Hints 
+		function hints(){
+		
+			hclick += 1;
+			var hm = document.getElementById('hintshow');
+			if(hclick == 1){
+				if(x%2==0){
+					hm.style.display = "block";
+					hm.innerHTML = "This is an Even Number";
+				}else{
+					hm.style.display = "block";
+					hm.innerHTML = "This is an Odd Number";
+				}
+			}else if(hclick == 2){
+				if(x<=10){
+					hm.innerHTML = "Number between 0-10";
+				}else if(x<=20){
+					hm.innerHTML = "Number between 11-20";
+				}else if(x<=30){
+					hm.innerHTML = "Number between 21-30";
+				}else if(x<=40){
+					hm.innerHTML = "Number between 31-40";
+				}else{
+					hm.innerHTML = "Number between 41-50";
+				}
+			}else if(hclick == 3){
+				hm.innerHTML = "Sorry ! No More Hints <br> Used Your Brain ";
+				hm.style.display = "block";
+			}else{
+				location.reload();
+			}
+		}
+	//Check		
+		function submit(){
+			window.setTimeout(timeup, 30000);
+			click += 1;
+			var show = document.getElementById('show');
+			var uv = document.getElementById('UserNamer').value;
+			var prize = document.getElementById('prize');
+			var img = document.getElementById('img');
+			if(click==1){
+				if(uv > x){
+					show.innerHTML = "Think less ! <br> Your Number is more then computer number";
+				}else if(uv <x){
+					show.innerHTML = "Think More ! <br> Your Number is more then computer number";
+				}else if(uv == x){
+					show.innerHTML = "Congratulation!";
+					prize.style.display = "block";
+					img.src = "https://media.giphy.com/media/l4FGni1RBAR2OWsGk/giphy.gif";
+				}
+			}else if(click ==2){
+				if(uv > x){
+					show.innerHTML = "Think less ! <br> Your Number is more then computer number";
+				}else if(uv <x){
+					show.innerHTML = "Think More ! <br> Your Number is more then computer number";
+				}else if(uv == x){
+					show.innerHTML = "Congratulation!";
+					prize.style.display = "block";
+					img.src = "https://media.giphy.com/media/3oKIPvSeHOG8GiOeis/giphy.gif";
+				}
+			}else if(click ==3){
+				if(uv > x){
+					show.innerHTML = "Think less ! <br> Your Number is more then computer number";
+				}else if(uv <x){
+					show.innerHTML = "Think More ! <br> Your Number is more then computer number";
+				}else if(uv == x){
+					show.innerHTML = "Congratulation!";
+					prize.style.display = "block";
+					img.src = "https://media.giphy.com/media/QhmboW0R7eUbm/giphy.gif";
+				}
+			}else{
+				alert('Offsss ! Play Again');
+				window.location.href = "index.html";
+			}
+			
+			
+		}
+		
+		function playagain(){
+			window.location.href = "index.html";
+		}
+		
+		function timeup(){
+			alert('Times UP');
+			window.location.href = "index.html";
+		}
+						
+	</script>
+</head>
+<body>
+
+	<div>
+		<h1>Let's Play A Guessing Games</h1>
+		<input type="number" id="UserNamer" required="">
+		<br>
+		<button class="btn btn--md btn--blue" onclick="submit()">Check</button>
+		<br>
+		<h3 id="show"></h3>
+	</div>
+	
+	<!-- Hints Area-->
+	<div class="harea">
+		<button class="btn btn--sm btn--green" onclick="hints()">Hints</button>
+		<aside id="hintshow"></aside>
+	</div>
+	<!--End Hints Area-->
+	
+	<!--Prize-->
+	<div id="prize">
+		<div style="text-align:center">
+			<img src="" alt="" id="img">
+			<br>
+			<button class="btn btn--md btn--green" onclick="playagain()">Play Again</button>
+		</div>
+	</div>
+	<!--Prize-->
+	<div class="prize"></div>
+	
+	
+
+</body>
+</html>
